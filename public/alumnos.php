@@ -28,23 +28,24 @@
                        <td scope="row">R1C3</td>
                         <td scope="row">
                           <form action="" method="post">
-                            <a name="" id="" class="btn btn-outline-info" href="#" role="button"><i class="fa-solid fa-user-pen"></i></a>
+                            <a name="" id="" class="btn btn-outline-info" href="update.php" role="button"><i class="fa-solid fa-user-pen"></i></a>
                           </form>
                         </td>
                        <td scope="row">
                           <form action="" method="post">
-                            <a name="" id="" class="btn btn-outline-danger" href="#" role="button"><i class="fa-solid fa-user-xmark"></i></a>
+                            <a name="" id="" class="btn btn-outline-danger" href="delete.php" role="button"><i class="fa-solid fa-user-xmark"></i></a>
                           </form>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
+                <div class="d-flex justify-content-center">
+                    <a name="returnAlumnos" id="returnAlumnos" class="btn btn-outline-success mx-5" href="add.php" role="button">Agregar alumno</a>
+                    <a name="returnAlumnos" id="returnAlumnos" class="btn btn-outline-primary mx-4" href="index.php" role="button">Regresar</a>
+                </div>
                 </div>
               </div>
             </div>
-        </div>
-        <a name="returnAlumnos" id="returnAlumnos" class="btn btn-primary" href="add.php" role="button">Agregar alumno</a>  
-  <a name="returnAlumnos" id="returnAlumnos" class="btn btn-primary" href="index.php" role="button">Regresar</a>
-  
+        </div>  
 </div>

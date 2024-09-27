@@ -11,7 +11,7 @@
                         <a name="returnAlumnos" id="returnAlumnos" class="btn btn-outline-primary mx-4" href="alumnos.php" role="button"><i class="fa-solid fa-arrow-left"></i></a>
                     </div>
                     <div class="p-2 bd-highlight">
-                        <h1>Agregar nuevo registro</h1>
+                        <h1>Editar registro</h1>
                     </div>
                 </div>
                 <hr>
@@ -36,7 +36,7 @@
                     </fieldset>
                 </form>
                 <div class="d-flex justify-content-center">
-                    <a name="returnAlumnos" id="returnAlumnos" class="btn btn-outline-success mx-4" href="add.php" role="button">Registrar</a>
+                    <a name="returnAlumnos" id="returnAlumnos" class="btn btn-outline-success mx-4" href="add.php" role="button">Editar</a>
                 </div>
                 </div>
               </div>
