@@ -1,3 +1,11 @@
+<?php
+
+require_once "config/crud.php";
+$crud = new Crud();
+$alumnos = $crud->read("registros.registros");
+
+?>
+
 <?php include "templates/header.php"?>
 
 <!--Solo para empezar, esto mandarlo a la página del formulario cuando quede lista la base de datos -->
@@ -20,12 +28,17 @@
                         <th scope="col">Eliminar</th>
                       </tr>
                     </thead>
+                    
                     <tbody>
+                      <!--Aquí se recorre el array de alumnos para mostrar los registros-->
+                    <?php 
+                      foreach($alumnos as $alumno){
+                    ?>
                       <tr class="">
-                        <td scope="row">R1C1</td>
-                        <td scope="row">R1C2</td>
-                        <td scope="row">R1C3</td>
-                       <td scope="row">R1C3</td>
+                        <td scope="row"> <?php echo $alumno->nombre;?> </td></td>
+                        <td scope="row"><?php echo $alumno->paterno;?></td>
+                        <td scope="row"><?php echo $alumno->materno;?></td>
+                       <td scope="row"><?php echo $alumno->fecha_nacimiento;?></td>
                         <td scope="row">
                           <form action="" method="post">
                             <a name="" id="" class="btn btn-outline-info" href="update.php" role="button"><i class="fa-solid fa-user-pen"></i></a>
@@ -38,6 +51,9 @@
                         </td>
                       </tr>
                     </tbody>
+                    <?php
+                    }
+                    ?>
                   </table>
                 </div>
                 <div class="d-flex justify-content-center">
@@ -49,3 +65,4 @@
             </div>
         </div>  
 </div>
+<?php include "templates/fotter.php"?>

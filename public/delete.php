@@ -32,7 +32,7 @@
                     </thead>
                     <tbody>
                       <tr class="">
-                        <td scope="row">R1C1</td>
+                        <td scope="row"> </td>
                         <td scope="row">R1C2</td>
                         <td scope="row">R1C3</td>
                        <td scope="row">R1C3</td>
