@@ -9,16 +9,24 @@ require_once $_SERVER ['DOCUMENT_ROOT']. '/xampp/practicando-Mongo/vendor/autolo
             $puerto = "27017";
 
 
-            $conection = new MongoDB\Driver\Manager("mongodb://$user:$password@$host/$db");
-            return $conection;
+            try {
+                // Incluimos el puerto en la cadena de conexión
+                $conection = new MongoDB\Driver\Manager("mongodb://$user:$password@$host:$puerto/$db");
+    
+                // Intentar realizar una operación para verificar la conexión
+                $command = new MongoDB\Driver\Command(["ping" => 1]);
+                $conection->executeCommand($db, $command); // Ejecutamos un ping para probar la conexión
+    
+                return $conection; // Si todo es correcto, retornamos la conexión
+            } catch (MongoDB\Driver\Exception\Exception $e) {
+                echo "Error en la conexión: " . $e->getMessage();
+                return null;
+            }
         }
-        
     }
-    try{
-        $conection = new Conection();
-        $conection->conectar();
-        echo "Conexión exitosa";
-    }catch(Exception $e){
-        echo "Error en la conexión: ".$e->getMessage();
-    }
+    
+    // Intentamos realizar la conexión
+    $conection = new Conection();
+    $conection->conectar();
+    
  ?>       

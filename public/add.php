@@ -15,29 +15,29 @@
                     </div>
                 </div>
                 <hr>
-                <form action="">
+                <form action="procesos/add.php" method="POST">
                     <fieldset>
                         <div class="mb-3">
-                            <label for="" class="form-label">Nombre</label>
-                            <input type="text" name="" id="" class="form-control" placeholder="Ingresa nombre completo" aria-describedby="helpId"/>
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingresa nombre completo" required>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Apellido paterno</label>
-                            <input type="text" name="" id="" class="form-control" placeholder="Ingresa apellido paterno" aria-describedby="helpId"/>
+                            <label for="paterno" class="form-label">Apellido paterno</label>
+                            <input type="text" name="paterno" id="paterno" class="form-control" placeholder="Ingresa apellido paterno" required/>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Apellido materno</label>
-                            <input type="text" name="" id="" class="form-control" placeholder="Ingresa apellido materno" aria-describedby="helpId"/>
+                            <label for="materno" class="form-label">Apellido materno</label>
+                            <input type="text" name="materno" id="materno" class="form-control" placeholder="Ingresa apellido materno" required/>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Fecha de nacimiento</label>
-                            <input type="text" name="" id="" class="form-control" placeholder="Ingresa la fecha de nacimiento" aria-describedby="helpId"/>
+                            <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
+                            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" placeholder="Ingresa la fecha de nacimiento" required/>
                         </div>
                     </fieldset>
-                </form>
-                <div class="d-flex justify-content-center">
-                    <a name="returnAlumnos" id="returnAlumnos" class="btn btn-outline-success mx-4" href="add.php" role="button">Registrar</a>
+                    <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-outline-success mx-4">Registrar</button>
                 </div>
+                </form>
                 </div>
               </div>
             </div>
