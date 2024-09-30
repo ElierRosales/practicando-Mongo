@@ -1,12 +1,11 @@
-<?php
-
+<?php include "templates/header.php"?>
+<?php 
 require_once "config/crud.php";
 $crud = new Crud();
 $alumnos = $crud->read("registros.registros");
-
 ?>
 
-<?php include "templates/header.php"?>
+
 
 <!--Solo para empezar, esto mandarlo a la página del formulario cuando quede lista la base de datos -->
     <div class="container">
@@ -40,13 +39,14 @@ $alumnos = $crud->read("registros.registros");
                         <td scope="row"><?php echo $alumno->materno;?></td>
                        <td scope="row"><?php echo $alumno->fecha_nacimiento;?></td>
                         <td scope="row">
-                          <form action="" method="post">
+                          <form action="" method="POST">
                             <a name="" id="" class="btn btn-outline-info" href="update.php" role="button"><i class="fa-solid fa-user-pen"></i></a>
                           </form>
                         </td>
                        <td scope="row">
-                          <form action="" method="post">
-                            <a name="" id="" class="btn btn-outline-danger" href="delete.php" role="button"><i class="fa-solid fa-user-xmark"></i></a>
+                          <form action="delete.php" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $alumno->_id;?>">
+                            <button type="submit" class="btn btn-outline-danger"><i class="fa-solid fa-user-xmark"></i></button>
                           </form>
                         </td>
                       </tr>
@@ -65,4 +65,4 @@ $alumnos = $crud->read("registros.registros");
             </div>
         </div>  
 </div>
-<?php include "templates/fotter.php"?>
+<?php include "templates/footer.php"?>

@@ -1,8 +1,15 @@
-<?php include "templates/header.php"?>
-
+<?php require_once "templates/header.php";
+require_once "config/crud.php";
+$crud = new Crud();
+$id = $_POST["id"];
+$alumno = $crud->readOne($id);
+?>
 <div class="alert alert-dismissible alert-danger">
   <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-  <strong>Cuidado</strong> Si eliminas un registro no podrás recuperarlo.
+  <h4 class="alert-heading">¡Atención!</h4>
+  <p class="mb-0">Estás a punto de eliminar el siguiente registro:</p>
+  <hr>
+  <strong>Si eliminas un registro no podrás recuperarlo.</strong>
 </div>
 
 <!--Solo para empezar, esto mandarlo a la página del formulario cuando quede lista la base de datos -->
@@ -24,7 +31,7 @@
                   <table class="table">
                    <thead>
                      <tr class="table-danger">
-                        <th scope="col">Nombre</th>
+                        <th scope="col"> Nombre </th>
                         <th scope="col">Apellido paterno</th>
                       <th scope="col">Apellido materno</th>
                         <th scope="col">Fecha de nacimiento</th>
@@ -32,19 +39,22 @@
                     </thead>
                     <tbody>
                       <tr class="">
-                        <td scope="row"> </td>
-                        <td scope="row">R1C2</td>
-                        <td scope="row">R1C3</td>
-                       <td scope="row">R1C3</td>
+                        <td scope="row"> <?php echo $alumno -> nombre;?></td>
+                        <td scope="row"><?php echo $alumno -> paterno;?></td>
+                        <td scope="row"><?php echo $alumno -> materno;?></td>
+                       <td scope="row"><?php echo $alumno -> fecha_nacimiento;?></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <a name="returnAlumnos" id="returnAlumnos" class="btn btn-outline-danger mx-5" href="alumnos.php" role="button">Eliminar</a>
-                </div>
+                <form action="procesos/delete.php" class="d-flex justify-content-center" method="POST">
+                    <input type="hidden" name="id" value="<?php echo $alumno -> _id;?>">
+                    <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                </form>
                 </div>
               </div>
             </div>
         </div>  
 </div>
+
+<?php include "templates/footer.php"; ?>

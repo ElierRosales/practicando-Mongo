@@ -4,4 +4,4 @@
 
 
 
-<?php include "templates/fotter.php"?>
+<?php include "templates/footer.php"?>

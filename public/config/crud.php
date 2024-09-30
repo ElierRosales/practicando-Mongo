@@ -20,16 +20,27 @@ require_once "conection.php";
             $rows = $conection->executeQuery($tabla, $colection);
             return $rows;
         }
+
         public function update($tabla='registros.registros' , $datos, $condicion){
             $conection = $this->conectar();
             $bulk = new MongoDB\Driver\BulkWrite;
             $bulk->update($condicion, $datos);
             $conection->executeBulkWrite($tabla, $bulk);
         }
-        public function delete($tabla, $condicion){
+
+        public function readOne($id) {
+            $conection = $this->conectar(); // Obtén la conexión
+            $database = new MongoDB\Database($conection, 'registros'); // Crea una instancia de la base de datos
+            $collection = $database->selectCollection('registros'); // Selecciona la colección
+            // Busca un documento con el ID especificado
+            $datos = $collection->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
+            return $datos;
+        }
+        
+        public function delete($tabla='registros.registros', $recibe_id){
             $conection = $this->conectar();
             $bulk = new MongoDB\Driver\BulkWrite;
-            $bulk->delete($condicion);
+            $bulk->delete($recibe_id);
             $conection->executeBulkWrite($tabla, $bulk);
         }
     }
