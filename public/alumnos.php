@@ -39,8 +39,9 @@ $alumnos = $crud->read("registros.registros");
                         <td scope="row"><?php echo $alumno->materno;?></td>
                        <td scope="row"><?php echo $alumno->fecha_nacimiento;?></td>
                         <td scope="row">
-                          <form action="" method="POST">
-                            <a name="" id="" class="btn btn-outline-info" href="update.php" role="button"><i class="fa-solid fa-user-pen"></i></a>
+                          <form action="update.php" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $alumno->_id;?>">
+                            <button type="submit" class="btn btn-outline-primary"><i class="fa-solid fa-user-pen"></i></button>
                           </form>
                         </td>
                        <td scope="row">

@@ -21,18 +21,26 @@ require_once "conection.php";
             return $rows;
         }
 
-        public function update($tabla='registros.registros' , $datos, $condicion){
+        public function update($tabla, $id, $datos){
             $conection = $this->conectar();
             $bulk = new MongoDB\Driver\BulkWrite;
-            $bulk->update($condicion, $datos);
-            $conection->executeBulkWrite($tabla, $bulk);
+        
+            // Debes usar $set para actualizar solo los campos específicos
+            $bulk->update(
+                ['_id' => new MongoDB\BSON\ObjectId($id)],  // Filtro basado en el ID
+                ['$set' => $datos],  // Campos a actualizar
+                ['multi' => false, 'upsert' => false] // Solo actualizar un documento
+            );
+        
+            // Ejecuta la operación de escritura
+            $result = $conection->executeBulkWrite($tabla, $bulk);
+            return $result;
         }
 
         public function readOne($id) {
             $conection = $this->conectar(); // Obtén la conexión
             $database = new MongoDB\Database($conection, 'registros'); // Crea una instancia de la base de datos
             $collection = $database->selectCollection('registros'); // Selecciona la colección
-            // Busca un documento con el ID especificado
             $datos = $collection->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
             return $datos;
         }

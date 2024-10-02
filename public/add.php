@@ -35,8 +35,8 @@
                         </div>
                     </fieldset>
                     <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-outline-success mx-4">Registrar</button>
-                </div>
+                        <button type="submit" class="btn btn-outline-success mx-4">Registrar</button>
+                    </div>
                 </form>
                 </div>
               </div>
