@@ -2,14 +2,18 @@
 
 require_once "conection.php";
     class Crud extends Conection{
+
         public function insert($datos, $tabla = 'registros.registros') {
-            $conection = $this->conectar();
-            $bulk = new MongoDB\Driver\BulkWrite;
-            $bulk->insert($datos);
+            $conection = $this->conectar(); // Conectas a la base de datos
+            $bulk = new MongoDB\Driver\BulkWrite; // Inicializas el objeto BulkWrite
+            $bulk->insert($datos); // Añades los datos para insertar
             
             try {
-                return $conection->executeBulkWrite($tabla, $bulk);
+                // Ejecutas la inserción y retornas el resultado
+                $result = $conection->executeBulkWrite($tabla, $bulk);
+                return $result; // Asegúrate de retornar el objeto de resultado
             } catch (MongoDB\Driver\Exception\Exception $e) {
+                // Muestras un mensaje en caso de error
                 echo "Error en la inserción: " . $e->getMessage();
                 return null;
             }
@@ -51,5 +55,29 @@ require_once "conection.php";
             $bulk->delete($recibe_id);
             $conection->executeBulkWrite($tabla, $bulk);
         }
+
+        public function alertasMensajes($mensaje){
+            if ($mensaje == 'insert') {
+                return json_encode([
+                    'title' => '¡Registro exitoso!',
+                    'text' => 'El registro se ha guardado con éxito',
+                    'icon' => 'success'
+                ]);
+            } elseif ($mensaje == 'update') {
+                return json_encode([
+                    'title' => '¡Actualización exitosa!',
+                    'text' => 'El registro se ha actualizado con éxito',
+                    'icon' => 'success'
+                ]);
+            } elseif ($mensaje == 'delete') {
+                return json_encode([
+                    'title' => '¡Eliminación exitosa!',
+                    'text' => 'El registro se ha eliminado con éxito',
+                    'icon' => 'success'
+                ]);
+            }
+            return null;
+        }
+
     }
 ?>

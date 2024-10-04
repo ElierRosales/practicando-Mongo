@@ -1,4 +1,5 @@
-<?php
+<?php session_start();
+
 require_once "../config/crud.php";
 
 $Crud = new Crud();
@@ -18,11 +19,15 @@ try {
     $respuesta = $Crud->update('registros.registros', $id, $datos);
 
     // Verifica si la operación fue exitosa
-    if($respuesta->getModifiedCount() > 0 || $respuesta->getMatchedCount() > 0) {
-        header("location: ../alumnos.php"); // Redirigir si todo está bien
+    if ($respuesta->getModifiedCount() > 0) {
+        $_SESSION['mensaje'] = 'update';  // Almacena el mensaje en la sesión
+    } elseif ($respuesta->getMatchedCount() > 0) {
+        // El documento coincidió pero no se modificó
+        $_SESSION['mensaje'] = 'no_change';  // Mensaje diferente si no hubo cambio
     } else {
-        echo "Error: no se actualizó el documento.";
+        $_SESSION['mensaje'] = 'error';  // Error si no se encontró ni actualizó el documento
     }
+    header("location: ../alumnos.php");  // Redirecciona a la página de alumnos
 
 } catch (MongoDB\Driver\Exception\Exception $e) {
     echo "Error de MongoDB: " . $e->getMessage();

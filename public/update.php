@@ -1,4 +1,5 @@
-<?php require_once "templates/header.php";
+<?php session_start();
+require_once "templates/header.php";
 require_once "config/crud.php";
 $crud = new Crud();
 $id = $_POST["id"];
@@ -25,20 +26,20 @@ $alumno = $crud->readOne($id);
                 <input type="hidden" name="id" value="<?php echo $alumno->_id; ?>">
                     <fieldset>  
                         <div class="mb-3">
-                            <label for="" class="form-label">Nombre</label>
-                            <input type="text" name="nombre" id="" class="form-control" value="<?php echo $alumno -> nombre;?>" required aria-describedby="helpId"/>
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $alumno -> nombre;?>" required aria-describedby="helpId"/>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Apellido paterno</label>
-                            <input type="text" name="paterno" id="" class="form-control" value="<?php echo $alumno -> paterno;?>" required aria-describedby="helpId"/>
+                            <label for="paterno" class="form-label">Apellido paterno</label>
+                            <input type="text" name="paterno" id="paterno" class="form-control" value="<?php echo $alumno -> paterno;?>" required aria-describedby="helpId"/>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Apellido materno</label>
-                            <input type="text" name="materno" id="" class="form-control" value="<?php echo $alumno -> materno;?>" required aria-describedby="helpId"/>
+                            <label for="materno" class="form-label">Apellido materno</label>
+                            <input type="text" name="materno" id="materno" class="form-control" value="<?php echo $alumno -> materno;?>" required aria-describedby="helpId"/>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Fecha de nacimiento</label>
-                            <input type="date" name="fecha_nacimiento" id="" class="form-control" value="<?php echo $alumno -> fecha_nacimiento;?>" required aria-describedby="helpId"/>
+                            <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
+                            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" value="<?php echo $alumno -> fecha_nacimiento;?>" required aria-describedby="helpId"/>
                         </div>
                     </fieldset>
                     <div class="d-flex justify-content-center">
@@ -52,3 +53,4 @@ $alumno = $crud->readOne($id);
         
   
 </div>
+<?php include "templates/footer.php"?>

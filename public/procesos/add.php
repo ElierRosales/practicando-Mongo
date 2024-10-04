@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 
     include "../config/conection.php";
     include "../config/crud.php";
@@ -15,10 +15,12 @@
 
     $respuesta = $Crud->insert($datos, 'registros.registros');
 
-    if($respuesta -> getInsertedCount() > 0){
+    if($respuesta !== null){
+        $_SESSION['mensaje'] = 'insert';
         header("location: ../alumnos.php");
     }else{
         echo "Error al registrar";
     }
 
 ?>
+<?php include "templates/footer.php"?>

@@ -1,8 +1,14 @@
-<?php include "templates/header.php"?>
-<?php 
+<?php session_start();
+include "templates/header.php";
 require_once "config/crud.php";
 $crud = new Crud();
 $alumnos = $crud->read("registros.registros");
+
+$mensaje = '';
+if(isset($_SESSION['mensaje'])){
+  $mensaje = $crud->alertasMensajes($_SESSION['mensaje']);
+  unset($_SESSION['mensaje']);
+}
 ?>
 
 
@@ -66,4 +72,14 @@ $alumnos = $crud->read("registros.registros");
             </div>
         </div>  
 </div>
+<script>
+    let mensaje = <?php echo $mensaje; ?>; // Esto es un objeto JavaScript
+
+    // Verifica si hay un mensaje de alerta que mostrar
+    if (mensaje) {
+        Swal.fire(mensaje);  // Ejecuta el código de SweetAlert2 directamente
+    }
+</script>
+
 <?php include "templates/footer.php"?>
+
