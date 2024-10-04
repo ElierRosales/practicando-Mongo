@@ -72,14 +72,15 @@ if(isset($_SESSION['mensaje'])){
             </div>
         </div>  
 </div>
-<script>
-    let mensaje = <?php echo $mensaje; ?>; // Esto es un objeto JavaScript
 
-    // Verifica si hay un mensaje de alerta que mostrar
+<script>
+    let mensaje = <?php echo $mensaje; ?>;
+
     if (mensaje) {
         Swal.fire(mensaje);  // Ejecuta el código de SweetAlert2 directamente
     }
 </script>
+
 
 <?php include "templates/footer.php"?>
 
