@@ -27,7 +27,7 @@ try {
     } else {
         $_SESSION['mensaje'] = 'error';  // Error si no se encontró ni actualizó el documento
     }
-    header("location: ../alumnos.php");  // Redirecciona a la página de alumnos
+    header("location: ../views/alumnos.php");  // Redirecciona a la página de alumnos
 
 } catch (MongoDB\Driver\Exception\Exception $e) {
     echo "Error de MongoDB: " . $e->getMessage();

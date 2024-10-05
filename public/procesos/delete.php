@@ -5,6 +5,6 @@ $id = $_POST["id"];
 $recibe_id = ['_id' => new MongoDB\BSON\ObjectId($id)];
 $crud->delete('registros.registros', $recibe_id);
 $_SESSION['mensaje'] = 'delete';
-header("Location: ../alumnos.php");
+header("Location: ../views/alumnos.php");
 exit;
 ?>

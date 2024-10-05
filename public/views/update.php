@@ -1,11 +1,10 @@
 <?php session_start();
-require_once "templates/header.php";
-require_once "config/crud.php";
+require_once "../templates/header.php";
+require_once "../config/crud.php";
 $crud = new Crud();
 $id = $_POST["id"];
 $alumno = $crud->readOne($id);
 ?>
-<?php include "templates/header.php"?>
 
 <!--Solo para empezar, esto mandarlo a la página del formulario cuando quede lista la base de datos -->
     <div class="container">
@@ -22,7 +21,7 @@ $alumno = $crud->readOne($id);
                     </div>
                 </div>
                 <hr>
-                <form action="procesos/update.php" method="POST">
+                <form action="../procesos/update.php" method="POST">
                 <input type="hidden" name="id" value="<?php echo $alumno->_id; ?>">
                     <fieldset>  
                         <div class="mb-3">
@@ -53,4 +52,4 @@ $alumno = $crud->readOne($id);
         
   
 </div>
-<?php include "templates/footer.php"?>
+<?php include "../templates/footer.php"?>

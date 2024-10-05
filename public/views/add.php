@@ -1,4 +1,4 @@
-<?php include "templates/header.php"?>
+<?php include "../templates/header.php"?>
 
 <!--Solo para empezar, esto mandarlo a la página del formulario cuando quede lista la base de datos -->
     <div class="container">
@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <hr>
-                <form action="procesos/add.php" method="POST">
+                <form action="../procesos/add.php" method="POST">
                     <fieldset>
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>

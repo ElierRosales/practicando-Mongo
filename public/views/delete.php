@@ -1,6 +1,6 @@
 <?php 
-require_once "templates/header.php";
-require_once "config/crud.php";
+require_once "../templates/header.php";
+require_once "../config/crud.php";
 $crud = new Crud();
 $id = $_POST["id"];
 $alumno = $crud->readOne($id);
@@ -47,7 +47,7 @@ $alumno = $crud->readOne($id);
                             </tbody>
                         </table>
                     </div>
-                    <form action="procesos/delete.php" method="POST" class="d-flex justify-content-center">
+                    <form action="../procesos/delete.php" method="POST" class="d-flex justify-content-center">
                         <input type="hidden" name="id" value="<?php echo $alumno->_id; ?>">
                         <button type="button" class="btn btn-outline-danger delete-button">Eliminar</button>
                     </form>
@@ -57,6 +57,7 @@ $alumno = $crud->readOne($id);
     </div>  
 </div>
 
-<?php include "templates/footer.php"; ?>
+<?php include "../templates/footer.php"; ?>
 
-<script src="js/boton_eliminar.js"></script>
+<script src="../js/boton_eliminar.js"></script>
+

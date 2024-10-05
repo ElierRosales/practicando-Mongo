@@ -17,10 +17,10 @@
 
     if($respuesta !== null){
         $_SESSION['mensaje'] = 'insert';
-        header("location: ../alumnos.php");
+        header("location: ../views/alumnos.php");
     }else{
         echo "Error al registrar";
     }
 
 ?>
-<?php include "templates/footer.php"?>
+<?php include "../templates/footer.php"?>
