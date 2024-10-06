@@ -1,4 +1,9 @@
 <?php session_start();
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['usuario'])) {
+  header('Location: ../views/index.php'); // Redirigir a la página de inicio de sesión
+  exit(); // Asegúrate de detener la ejecución del script
+}
 include "../templates/header.php";
 require_once "../config/crud.php";
 $crud = new Crud();
@@ -56,6 +61,7 @@ if(isset($_SESSION['mensaje'])){
                             <button type="submit" class="btn btn-outline-danger"><i class="fa-solid fa-user-xmark"></i></button>
                           </form>
                         </td>
+                        
                       </tr>
                     </tbody>
                     <?php
@@ -65,7 +71,7 @@ if(isset($_SESSION['mensaje'])){
                 </div>
                 <div class="d-flex justify-content-center">
                     <a name="returnAlumnos" id="returnAlumnos" class="btn btn-outline-success mx-5" href="add.php" role="button">Agregar alumno</a>
-                    <a name="returnAlumnos" id="returnAlumnos" class="btn btn-outline-primary mx-4" href="index.php" role="button">Regresar</a>
+                    <a name="cerrarSesion" id="cerrarSesion" class="btn btn-outline-primary mx-4" href="../controllers/logout.php" role="button">Cerrar sesión</a>
                 </div>
                 </div>
               </div>
@@ -83,4 +89,3 @@ if(isset($_SESSION['mensaje'])){
 
 
 <?php include "../templates/footer.php"?>
-
