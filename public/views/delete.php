@@ -1,9 +1,17 @@
 <?php 
+//Controlando la autenticación
+include '../controllers/auth_controller.php';
+verificarAutenticacion();
 require_once "../templates/header.php";
 require_once "../config/crud.php";
 $crud = new Crud();
 $id = $_POST["id"];
 $alumno = $crud->readOne($id);
+$carreras = $crud->read("registros.carreras");
+$carrerasArray = [];
+foreach ($carreras as $carrera) {
+    $carrerasArray[(string)$carrera->_id] = $carrera->nombre;
+}
 ?>
 <div class="alert alert-dismissible alert-danger">
   <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
@@ -35,6 +43,7 @@ $alumno = $crud->readOne($id);
                                     <th scope="col">Apellido paterno</th>
                                     <th scope="col">Apellido materno</th>
                                     <th scope="col">Fecha de nacimiento</th>
+                                    <th scope="col"> Carrera</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,6 +52,14 @@ $alumno = $crud->readOne($id);
                                     <td scope="row"><?php echo $alumno->paterno; ?></td>
                                     <td scope="row"><?php echo $alumno->materno; ?></td>
                                     <td scope="row"><?php echo $alumno->fecha_nacimiento; ?></td>
+                                    <td scope="row"><?php
+                                        // Asegúrate de que la carrera está definida antes de usarla
+                                        if (isset($carrerasArray[(string)$alumno->carrera])) {
+                                            echo $carrerasArray[(string)$alumno->carrera]; // Mostrar el nombre de la carrera
+                                        } else {
+                                            echo "Sin carrera"; // Mensaje por defecto si no se encuentra la carrera
+                                        }
+                                        ?></td>
                                 </tr>
                             </tbody>
                         </table>

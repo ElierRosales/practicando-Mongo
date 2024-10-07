@@ -1,13 +1,16 @@
-<?php session_start();
-// Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION['usuario'])) {
-  header('Location: ../views/index.php'); // Redirigir a la página de inicio de sesión
-  exit(); // Asegúrate de detener la ejecución del script
-}
+<?php 
+//Controlando la autenticación
+include '../controllers/auth_controller.php';
+verificarAutenticacion();
 include "../templates/header.php";
 require_once "../config/crud.php";
 $crud = new Crud();
 $alumnos = $crud->read("registros.registros");
+$carreras = $crud->read("registros.carreras");
+$carrerasArray = [];
+foreach ($carreras as $carrera) {
+    $carrerasArray[(string)$carrera->_id] = $carrera->nombre;
+}
 
 $mensaje = '';
 if(isset($_SESSION['mensaje'])){
@@ -15,8 +18,6 @@ if(isset($_SESSION['mensaje'])){
   unset($_SESSION['mensaje']);
 }
 ?>
-
-
 
 <!--Solo para empezar, esto mandarlo a la página del formulario cuando quede lista la base de datos -->
     <div class="container">
@@ -32,8 +33,9 @@ if(isset($_SESSION['mensaje'])){
                      <tr class="table-active">
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido paterno</th>
-                      <th scope="col">Apellido materno</th>
+                        <th scope="col">Apellido materno</th>
                         <th scope="col">Fecha de nacimiento</th>
+                        <th scope="col"> Carrera</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
                       </tr>
@@ -48,7 +50,14 @@ if(isset($_SESSION['mensaje'])){
                         <td scope="row"> <?php echo $alumno->nombre;?> </td></td>
                         <td scope="row"><?php echo $alumno->paterno;?></td>
                         <td scope="row"><?php echo $alumno->materno;?></td>
-                       <td scope="row"><?php echo $alumno->fecha_nacimiento;?></td>
+                        <td scope="row"><?php echo $alumno->fecha_nacimiento;?></td>
+                        <td scope="row"><?php
+                        if (isset($carrerasArray[(string)$alumno->carrera])) {
+                            echo $carrerasArray[(string)$alumno->carrera]; // Mostrar el nombre de la carrera
+                        } else {
+                            echo "Sin carrera";
+                        }
+                        ?><td>
                         <td scope="row">
                           <form action="update.php" method="POST">
                             <input type="hidden" name="id" value="<?php echo $alumno->_id;?>">

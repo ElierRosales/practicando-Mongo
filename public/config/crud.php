@@ -56,6 +56,27 @@ require_once "conection.php";
             $conection->executeBulkWrite($tabla, $bulk);
         }
 
+        // Método para insertar varios documentos
+        public function insertMany( $documents) {
+            $conection = $this->conectar(); // Obtén la conexión
+            $bulk = new MongoDB\Driver\BulkWrite; // Inicializas el objeto BulkWrite
+    
+            // Agrega cada documento al BulkWrite
+            foreach ($documents as $document) {
+                $bulk->insert($document);
+            }
+    
+            try {
+                // Ejecuta la inserción y retornas el resultado
+                $result = $conection->executeBulkWrite('registros.carreras', $bulk);
+                return $result; // Asegúrate de retornar el objeto de resultado
+            } catch (MongoDB\Driver\Exception\Exception $e) {
+                // Muestras un mensaje en caso de error
+                echo "Error en la inserción: " . $e->getMessage();
+                return null;
+            }
+        }
+
         public function alertasMensajes($mensaje){
             if ($mensaje == 'insert') {
                 return json_encode([

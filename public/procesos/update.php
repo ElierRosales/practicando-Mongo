@@ -11,7 +11,8 @@ $datos = [
     'nombre' => $_POST['nombre'],
     'paterno' => $_POST['paterno'],
     'materno' => $_POST['materno'],
-    'fecha_nacimiento' => $_POST['fecha_nacimiento']
+    'fecha_nacimiento' => $_POST['fecha_nacimiento'],
+    'carrera' => $_POST['carrera']
 ];
 
 try {

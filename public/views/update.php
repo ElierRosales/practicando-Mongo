@@ -1,9 +1,14 @@
-<?php session_start();
+<?php 
+//Controlando la autenticación
+include '../controllers/auth_controller.php';
+verificarAutenticacion();
 require_once "../templates/header.php";
 require_once "../config/crud.php";
 $crud = new Crud();
+$carreras = $crud->read("registros.carreras");
 $id = $_POST["id"];
 $alumno = $crud->readOne($id);
+
 ?>
 
 <!--Solo para empezar, esto mandarlo a la página del formulario cuando quede lista la base de datos -->
@@ -39,6 +44,16 @@ $alumno = $crud->readOne($id);
                         <div class="mb-3">
                             <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
                             <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" value="<?php echo $alumno -> fecha_nacimiento;?>" required aria-describedby="helpId"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="carrera">Carrera</label>
+                            <select class="form-control" id="carrera" name="carrera" required>
+                                <?php foreach ($carreras as $carrera) { ?>
+                                    <option value="<?php echo $carrera->_id; ?>" <?php echo ($carrera->_id == $alumno->carrera) ? 'selected' : ''; ?>>
+                                        <?php echo $carrera->nombre; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </fieldset>
                     <div class="d-flex justify-content-center">

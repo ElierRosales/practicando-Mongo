@@ -1,4 +1,12 @@
-<?php include "../templates/header.php"?>
+<?php
+include '../templates/header.php'; 
+include '../controllers/auth_controller.php';
+verificarAutenticacion();
+
+require_once "../config/crud.php";
+$crud = new Crud();
+$carreras = $crud->read("registros.carreras");
+?>
 
 <!--Solo para empezar, esto mandarlo a la página del formulario cuando quede lista la base de datos -->
     <div class="container">
@@ -33,6 +41,15 @@
                             <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
                             <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" placeholder="Ingresa la fecha de nacimiento" required/>
                         </div>
+                        <div class="form-group">
+                            <label for="carrera">Carrera</label>
+                            <select class="form-control" id="carrera" name="carrera" required>
+                                <?php foreach ($carreras as $carrera) { ?>
+                                    <option value="<?php echo $carrera->_id; ?>"><?php echo $carrera->nombre; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+
                     </fieldset>
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-outline-success mx-4">Registrar</button>
